@@ -2,6 +2,7 @@ var MapActor = class extends Actor {
     /**
      * @param {Game} game
      * @param {string} mapName
+     * @param {Actor | object} actorProps
      * @param {string[]} solidSprites
      */
     constructor(game, mapName, actorProps = {}, solidSprites = []) {
@@ -10,11 +11,8 @@ var MapActor = class extends Actor {
         this.solidSprites = solidSprites;
     }
 
-    update() {
-    }
-
     draw() {
-        screen.drawMap(this.mapName, this.x, this.y, this.w, this.h);
+        screen.drawMap(this.mapName, this.x, this.y, this.width, this.height);
     }
 
     /**

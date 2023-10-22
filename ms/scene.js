@@ -1,15 +1,16 @@
-var Scene = class {
+var Scene = class extends Actor {
   /**
    * @param {Game} game
+   * @param {Actor | object} actorProps
    * @param {Color} clearColor
-   * @param {Actor[]} actors
-   * @param {MapActor[]} maps
    */
-  constructor(game, clearColor = null, actors = [], maps = []) {
+  constructor(game, actorProps = {}, clearColor = null) {
+    super(game, actorProps);
     this.game = game;
     this.clearColor = clearColor;
-    this.actors = actors;
-    this.maps = maps;
+    this.actors = [];
+    this.maps = [];
+    this.sortActors();
   }
 
   update() {
@@ -18,8 +19,7 @@ var Scene = class {
 
   draw() {
     screen.clear(this.clearColor);
-    this.maps.forEach((m) => m.draw());
-    this.actors.forEach((a) => a.draw());
+    this.actors.forEach((m) => m.draw());
   }
 
   /**
@@ -27,13 +27,11 @@ var Scene = class {
    */
   addActor(actor) {
     this.actors.push(actor);
+    this.sortActors();
   }
 
-  /*
-   * @param {MapActor} map
-   */
-  addMap(map) {
-    this.maps.push(map);
+  sortActors() {
+    this.actors.sort((a, b) => a.z - b.z);
   }
 
   /**

@@ -11,7 +11,7 @@ var Game = class {
 
     update() {
         if (this._gameEnded) return;
-        this.currentScene.update();
+        this.currentScene?.update();
         this._tick++;
     }
 
@@ -21,7 +21,8 @@ var Game = class {
             screen.drawText("Game Over", 0, 0, 20, "rgb(255,0,0)");
             return;
         }
-        this.currentScene.draw();
+
+        this.currentScene?.draw();
     }
 
     get currentScene() {
