@@ -17,7 +17,6 @@ var Actor = class {
     this.ay = e.ay ?? 0.02;
     this.width = e.width ?? 16;
     this.height = e.height ?? 16;
-    this.sprite = e.sprite ?? "sprite";
     this.flip = e.flip;
     this.input = {};
 
@@ -31,7 +30,17 @@ var Actor = class {
   }
 
   draw() {
-    screen.drawSprite(this.sprite, this.x, this.y, this.width, this.height);
+    if (DEBUG) {
+      screen.drawRound(this.x, this.y, 1, 1, "#FF0")
+      screen.drawRect(this.x, this.y, this.width, this.height, "rgb(255,0,0)");
+      screen.drawText(`x:${this.x} y:${this.y}`, this.x, this.y + this.width / 2, 5, "#FFF");
+
+      const [x1, y1, x2, y2] = this.aabb;
+      screen.drawRound(x1, y1, 1, 1, "#F0F")
+      screen.drawRound(x1, y2, 1, 1, "#0F0")
+      screen.drawRound(x2, y1, 1, 1, "#00F")
+      screen.drawRound(x2, y2, 1, 1, "#0FF")
+    }
   }
 
   /**

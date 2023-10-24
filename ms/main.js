@@ -1,4 +1,5 @@
 var game;
+var DEBUG = true;
 
 init = function () {
     game = new Game();
@@ -6,6 +7,7 @@ init = function () {
     game.addScene(scene1);
 
     const actor1 = new Actor(game, {
+        ay: 0.05,
     });
     scene1.addActor(actor1);
 
@@ -17,7 +19,10 @@ init = function () {
     const map1 = new MapActor(game, "map", {
         width: 200,
         height: 200,
-    }, ["sand_18x18"]);
+        z: -1,
+    }, [
+        new Tile("sand_18x18", 1, 6),
+    ]);
     scene1.addActor(map1);
 }
 

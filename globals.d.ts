@@ -2,6 +2,8 @@ declare var init: () => void;
 declare var update: () => void;
 declare var draw: () => void;
 
+declare function print(text: string); 
+
 type Color =
     `#${string}` |
     `rgb(${number},${number},${number})` |

@@ -9,7 +9,6 @@ var Scene = class extends Actor {
     this.game = game;
     this.clearColor = clearColor;
     this.actors = [];
-    this.maps = [];
     this.sortActors();
   }
 
@@ -19,7 +18,7 @@ var Scene = class extends Actor {
 
   draw() {
     screen.clear(this.clearColor);
-    this.actors.forEach((m) => m.draw());
+    this.actors.forEach(a => a.draw());
   }
 
   /**
@@ -39,7 +38,9 @@ var Scene = class extends Actor {
    * @param {number} y
    */
   isSolid(x, y) {
-    return this.maps.some(map => map.isSolid(x, y));
+    return this.actors
+      .filter(a => a instanceof MapActor)
+      .some(m => m.isSolid(x, y));
   }
 
   /**
