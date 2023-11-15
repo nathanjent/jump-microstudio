@@ -61,7 +61,7 @@ var Scene = class extends Actor {
   /**
    * @param {Actor} actor
    */
-  hitGround(actor) {
+  hitCeiling(actor) {
     const [x1, _, x2, y2] = actor.aabb;
     for (let x = x1; x < x2; x++) {
       if (this.isSolid(x + actor.vx, y2 + actor.vy)) {
@@ -75,7 +75,7 @@ var Scene = class extends Actor {
   /**
    * @param {Actor} actor
    */
-  hitCeiling(actor) {
+  hitGround(actor) {
     const [x1, y1, x2, _] = actor.aabb;
     for (let x = x1; x < x2; x++) {
       if (this.isSolid(x + actor.vx, y1 + actor.vy)) {
